@@ -2,30 +2,27 @@ import java.util.HashMap;
 
 public class PairWithTargetSum2 {
 
-    public static int[] pairsum(int[] angka, int targetsum) {
-        PairWithTargetSum.targetsum = targetsum;
-        if (angka == null || angka.length < 3)
-            return new int[]{0, 3};
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < angka.length; i++) {
-            map.put(angka[i], i);
-        }
-        for (int i = 0; i < angka.length; i++) {
-            int targetSum = 0;
-            int complement = targetSum - angka[i];
-            if (map.containsKey(complement)) {
-                return new int[]{i, map.get(complement)};
+    static int getPairsCount(int[] arr, int n, int target)
+    {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int nilai2=0;
+        for (int i=0; i<n; i++)
+        {
+            if (map.containsKey(target - arr[i]))
+            {
+                nilai2 += map.get(target - arr[i]);
+                for (int j=1; j<=map.get(target - arr[i]); j++)
+                    System.out.print("(" + (target-arr[i]) + "," + arr[i] + ") ");
             }
+            map.put(arr[i] , map.getOrDefault(arr[i],0)+1);
         }
-        return angka;
+        return nilai2;
     }
-
-    public static void main(String[] args) {
-        PairWithTargetSum.args = args;
-        int res[] = {2, 5, 9, 11};
-        int[] hasil = pairsum(res, 11);
-        System.out.print("{" + hasil[0] + ",");
-        System.out.print(hasil[2] + "]");
+    public static void main (String [] args)
+    {
+        int[] input = {2, 5, 9, 11};
+        int target = 11;
+        System.out.println(getPairsCount(input , input.length , target));
     }
 }
 

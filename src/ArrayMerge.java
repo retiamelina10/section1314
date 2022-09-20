@@ -6,6 +6,7 @@ public class ArrayMerge {
         siswa.add("kajuya");
         siswa.add("jin");
         siswa.add("lee");
+
         siswa.add("kajuya");
         siswa.add("feng");
         System.out.println(siswa);
